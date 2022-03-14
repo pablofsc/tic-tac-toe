@@ -5,14 +5,13 @@ var tabaux = [];
 
 window.onload = function () {
     for (let i = 0; i <= 8; i++) {
-        console.log(i);
         botoes.push(document.getElementById(i));
         botoes[i].addEventListener("click", () => checarValidez(i));
     }
 }
 
 function checarValidez(casa) {
-    console.log("Checando validez de " + casa);
+    /*console.log("Checando validez de " + casa);*/
     if (tabuleiro[casa] !== ' ') {
         return;
     }
@@ -47,7 +46,13 @@ function checarVencedor(tabuleiro) {
     if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') return (tabuleiro[0]);
     if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') return (tabuleiro[2]);
 
-    return (' ');
+    for (i = 0; i <= 8; i++) {
+        if (tabuleiro[i] !== ' ') {
+            return (' '); // nenhum vencedor ainda
+        }
+    }
+
+    return ('!'); // empate
 }
 
 function anunciarVencedor(vencedor) {
@@ -55,6 +60,9 @@ function anunciarVencedor(vencedor) {
 
     if (vencedor == 'x') {
         alert("Você venceu!");
+    }
+    else if (vencedor == '!') {
+        alert("Empate!");
     }
     else {
         alert("A máquina venceu!");
@@ -65,7 +73,7 @@ function atualizarBotoes() {
     console.log("Atualizando conteúdo dos botões");
     for (let i = 0; i <= 8; i++) {
         document.getElementById(i).value = tabuleiro[i];
-        console.log(document.getElementById(i));
+        /*console.log(document.getElementById(i));*/
     }
 
     if (jogadorAtual == 'x') {
@@ -96,11 +104,11 @@ function darNota(jogadorHipotetico) {
         }
     }
 
-    console.log(nota);
     return (nota);
 }
 
 function iaIniciar(simboloMaquina) {
+    console.log("IA iniciada...");
     let nota = null;
     let notaMaior = -999999;
     let retorno = -1;
@@ -113,7 +121,7 @@ function iaIniciar(simboloMaquina) {
             tabaux[casa] = simboloMaquina;
 
             if (checarVencedor(tabaux, simboloMaquina) == simboloMaquina) { // checa se jogar nessa casa se vence o jogo imediatamente
-                return (casa);
+                registrarJogada(casa, simboloMaquina);;
             }
             else {
                 nota = darNota(simboloMaquina); // chama a função recursiva para gerar uma nota para essa casa
@@ -134,7 +142,7 @@ function iaIniciar(simboloMaquina) {
             tabaux[casa] = trocarjogador(simboloMaquina);
 
             if (checarVencedor(tabaux, trocarjogador(simboloMaquina)) == trocarjogador(simboloMaquina)) { // verifica se o humano ganharia na próxima rodada
-                return (casa); // impede-o
+                registrarJogada(casa, simboloMaquina); // impede-o
             }
 
             tabaux[casa] = ' '; // esvazia a casa para checar a próxima
@@ -142,9 +150,9 @@ function iaIniciar(simboloMaquina) {
         }
     }
 
-    console.log("IA: " + retorno);
+    /*console.log("IA: " + retorno);*/
 
-    registrarJogada(retorno, 'o');
+    registrarJogada(retorno, simboloMaquina);
 }
 
 
