@@ -15,6 +15,12 @@ window.onload = function () {
         botoes.push(document.getElementById(i));
         botoes[i].addEventListener("click", () => checarValidez(i));
     }
+
+    document.getElementById("partidasVencidasJogador").innerHTML = partidasVencidasX;
+    document.getElementById("partidasVencidasJogadorH1").innerHTML = partidasVencidasX;
+    document.getElementById("partidasVencidasMaquina").innerHTML = partidasVencidasO;
+    document.getElementById("partidasVencidasMaquinaH1").innerHTML = partidasVencidasO;
+    document.getElementById("partidasEmpatadas").innerHTML = empates;
 }
 
 function checarValidez(casa) {
@@ -47,19 +53,21 @@ function checarVencedorReal(tabuleiro) {
         console.log("---------------- Anunciando vencedor: " + vencedor);
 
         if (vencedor == 'x') {
-            alert("Você venceu!");
             partidasVencidasX++;
             document.getElementById("partidasVencidasJogador").innerHTML = partidasVencidasX;
+            document.getElementById("partidasVencidasJogadorH1").innerHTML = partidasVencidasX;
+            sleep(750);
         }
         else if (vencedor == '!') {
-            alert("Empate!");
             empates++
             document.getElementById("partidasEmpatadas").innerHTML = empates;
+            sleep(750);
         }
         else {
-            alert("A máquina venceu!");
             partidasVencidasO++;
             document.getElementById("partidasVencidasMaquina").innerHTML = partidasVencidasO;
+            document.getElementById("partidasVencidasMaquinaH1").innerHTML = partidasVencidasO;
+            sleep(750);
         }
 
         for (i = 0; i <= 8; i++) {
