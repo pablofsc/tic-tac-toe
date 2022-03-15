@@ -150,7 +150,7 @@ function checarVencedor(tabuleiro, real) {
 
 function atualizarBotoes() {
     for (let i = 0; i <= 8; i++) {
-        document.getElementById(i).value = tabuleiroReal[i];
+        botoes[i].value = tabuleiroReal[i];
         /*console.log(document.getElementById(i));*/
     }
 }
