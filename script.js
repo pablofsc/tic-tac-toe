@@ -39,7 +39,7 @@ function registrarJogada(casa) {
 
     atualizarBotoes();
 
-    setTimeout(() => { checarVencedorReal(tabuleiro); }, 100);
+    setTimeout(() => { checarVencedorReal(); }, 100);
 
     jogadorAtual = trocarJogador(jogadorAtual);
     console.log("Próximo jogador: " + jogadorAtual);
@@ -47,7 +47,7 @@ function registrarJogada(casa) {
     if (jogadorAtual === 'o' && checarVencedorHipotetico(tabuleiro) == ' ') setTimeout(() => { iaIniciar('o'); }, 100);
 }
 
-function checarVencedorReal(tabuleiro) {
+function checarVencedorReal() {
     vencedor = checarVencedorHipotetico(tabuleiro)
     if (vencedor !== ' ') {
         console.log("---------------- Anunciando vencedor: " + vencedor);
@@ -87,16 +87,24 @@ function checarVencedorReal(tabuleiro) {
 
 function checarVencedorHipotetico(tabuleiro) {
     /*console.log("Checando se há vencedor");*/
-    if (tabuleiro[0] == tabuleiro[1] && tabuleiro[0] == tabuleiro[2] && tabuleiro[0] !== ' ') return (tabuleiro[0]);
-    if (tabuleiro[3] == tabuleiro[4] && tabuleiro[3] == tabuleiro[5] && tabuleiro[3] !== ' ') return (tabuleiro[3]);
-    if (tabuleiro[6] == tabuleiro[7] && tabuleiro[6] == tabuleiro[8] && tabuleiro[6] !== ' ') return (tabuleiro[6]);
+    for (let i = 0; i <= 6; i += 3) {
+        if (tabuleiro[i] == tabuleiro[i + 1] && tabuleiro[i] == tabuleiro[i + 2] && tabuleiro[i] !== ' ') {
+            return (tabuleiro[i]);
+        }
+    }
 
-    if (tabuleiro[0] == tabuleiro[3] && tabuleiro[0] == tabuleiro[6] && tabuleiro[0] !== ' ') return (tabuleiro[0]);
-    if (tabuleiro[1] == tabuleiro[4] && tabuleiro[1] == tabuleiro[7] && tabuleiro[1] !== ' ') return (tabuleiro[1]);
-    if (tabuleiro[2] == tabuleiro[5] && tabuleiro[2] == tabuleiro[8] && tabuleiro[2] !== ' ') return (tabuleiro[2]);
+    for (let i = 0; i <= 3; i++) {
+        if (tabuleiro[i] == tabuleiro[i + 3] && tabuleiro[i] == tabuleiro[i + 6] && tabuleiro[i] !== ' ') {
+            return (tabuleiro[i]);
+        }
+    }
 
-    if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') return (tabuleiro[0]);
-    if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') return (tabuleiro[2]);
+    if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') {
+        return (tabuleiro[0]);
+    }
+    if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') {
+        return (tabuleiro[2]);
+    }
 
     for (i = 0; i <= 8; i++) {
         if (tabuleiro[i] === ' ') {
