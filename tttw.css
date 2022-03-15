@@ -3,6 +3,8 @@
     width: 50px;
     margin: 10px;
     display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 body {
