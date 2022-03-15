@@ -19,8 +19,10 @@ window.onload = function () {
 }
 
 function novaPartida() {
+    console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
+        botoes[i].style.color = "black";
     }
 
     primeiroJogador = trocarJogador(primeiroJogador)
@@ -62,11 +64,11 @@ function registrarJogada(casa) {
     jogadorAtual = trocarJogador(jogadorAtual);
     console.log("Próximo jogador: " + jogadorAtual);
 
-    if (jogadorAtual === 'o' && checarVencedorHipotetico(tabuleiroReal) == ' ') setTimeout(() => { iaIniciar('o'); }, 100);
+    if (jogadorAtual === 'o' && checarVencedor(tabuleiroReal, false) == ' ') setTimeout(() => { iaIniciar('o'); }, 100);
 }
 
 function checarVencedorReal() {
-    vencedor = checarVencedorHipotetico(tabuleiroReal)
+    vencedor = checarVencedor(tabuleiroReal, true)
 
     if (vencedor !== ' ') {
         console.log("---------------- Anunciando vencedor: " + vencedor);
@@ -86,30 +88,54 @@ function checarVencedorReal() {
         }
 
         atualizarPlacares();
-        sleep(1000);
-
-        novaPartida();
+        setTimeout(() => {
+            novaPartida();
+        }, 1000);
     }
 }
 
-function checarVencedorHipotetico(tabuleiro) {
+function checarVencedor(tabuleiro, real) {
     /*console.log("Checando se há vencedor");*/
     for (let i = 0; i <= 6; i += 3) {
         if (tabuleiro[i] == tabuleiro[i + 1] && tabuleiro[i] == tabuleiro[i + 2] && tabuleiro[i] !== ' ') {
+            if (real === true) {
+                botoes[i].style.color = "red";
+                botoes[i + 1].style.color = "red";
+                botoes[i + 2].style.color = "red";
+            }
+
             return (tabuleiro[i]);
         }
     }
 
     for (let i = 0; i <= 3; i++) {
         if (tabuleiro[i] == tabuleiro[i + 3] && tabuleiro[i] == tabuleiro[i + 6] && tabuleiro[i] !== ' ') {
+            if (real) {
+                botoes[i].style.color = "red";
+                botoes[i + 3].style.color = "red";
+                botoes[i + 6].style.color = "red";
+            }
+
             return (tabuleiro[i]);
         }
     }
 
     if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') {
+        if (real) {
+            botoes[0].style.color = "red";
+            botoes[4].style.color = "red";
+            botoes[8].style.color = "red";
+        }
+
         return (tabuleiro[0]);
     }
     if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') {
+        if (real) {
+            botoes[2].style.color = "red";
+            botoes[4].style.color = "red";
+            botoes[6].style.color = "red";
+        }
+
         return (tabuleiro[2]);
     }
 
@@ -177,7 +203,7 @@ function iaIniciar(simboloMaquina) {
             let notaCasa = 0;
             tabuleiroAuxiliar[casa] = simboloMaquina; // supoe a hipotese de jogar nesta casa
 
-            if (checarVencedorHipotetico(tabuleiroAuxiliar) === simboloMaquina) { // checa se ao jogar nessa casa vence-se o jogo imediatamente
+            if (checarVencedor(tabuleiroAuxiliar, false) === simboloMaquina) { // checa se ao jogar nessa casa vence-se o jogo imediatamente
                 registrarJogada(casa, simboloMaquina);
                 return;
             }
@@ -196,7 +222,7 @@ function iaIniciar(simboloMaquina) {
 
             tabuleiroAuxiliar[casa] = trocarJogador(simboloMaquina); // supoe a hipotese de o jogador jogar nessa casa em seguida
 
-            if (checarVencedorHipotetico(tabuleiroAuxiliar) === trocarJogador(simboloMaquina)) { // verifica se o humano ganharia na próxima rodada
+            if (checarVencedor(tabuleiroAuxiliar, false) === trocarJogador(simboloMaquina)) { // verifica se o humano ganharia na próxima rodada
                 maiorNota = 999999; // prioridade máxima para impedir
                 casaEscolhida = casa; // só não impedirá caso seja possível vencer na mesma jogada
             }
@@ -217,10 +243,10 @@ function avaliarJogadaHipotetica(tabuleiroHipotetico, jogadorHipotetico) {
         if (tabuleiroHipotetico[casa] === ' ') {
             tabuleiroHipotetico[casa] = jogadorHipotetico;
 
-            if (checarVencedorHipotetico(tabuleiroHipotetico) === jogadorHipotetico) {
+            if (checarVencedor(tabuleiroHipotetico, false) === jogadorHipotetico) {
                 nota += 1;
             }
-            else if (checarVencedorHipotetico(tabuleiroHipotetico) === trocarJogador(jogadorHipotetico)) {
+            else if (checarVencedor(tabuleiroHipotetico, false) === trocarJogador(jogadorHipotetico)) {
                 nota -= 1;
             }
             else {
