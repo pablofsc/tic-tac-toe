@@ -22,7 +22,7 @@ function novaPartida() {
     console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
-        botoes[i].style.color = "black";
+        botoes[i].style.backgroundColor = "";
     }
 
     primeiroJogador = trocarJogador(primeiroJogador)
@@ -99,9 +99,9 @@ function checarVencedor(tabuleiro, real) {
     for (let i = 0; i <= 6; i += 3) {
         if (tabuleiro[i] == tabuleiro[i + 1] && tabuleiro[i] == tabuleiro[i + 2] && tabuleiro[i] !== ' ') {
             if (real === true) {
-                botoes[i].style.color = "red";
-                botoes[i + 1].style.color = "red";
-                botoes[i + 2].style.color = "red";
+                botoes[i].style.backgroundColor = "red";
+                botoes[i + 1].style.backgroundColor = "red";
+                botoes[i + 2].style.backgroundColor = "red";
             }
 
             return (tabuleiro[i]);
@@ -111,9 +111,9 @@ function checarVencedor(tabuleiro, real) {
     for (let i = 0; i <= 3; i++) {
         if (tabuleiro[i] == tabuleiro[i + 3] && tabuleiro[i] == tabuleiro[i + 6] && tabuleiro[i] !== ' ') {
             if (real) {
-                botoes[i].style.color = "red";
-                botoes[i + 3].style.color = "red";
-                botoes[i + 6].style.color = "red";
+                botoes[i].style.backgroundColor = "red";
+                botoes[i + 3].style.backgroundColor = "red";
+                botoes[i + 6].style.backgroundColor = "red";
             }
 
             return (tabuleiro[i]);
@@ -122,18 +122,18 @@ function checarVencedor(tabuleiro, real) {
 
     if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') {
         if (real) {
-            botoes[0].style.color = "red";
-            botoes[4].style.color = "red";
-            botoes[8].style.color = "red";
+            botoes[0].style.backgroundColor = "red";
+            botoes[4].style.backgroundColor = "red";
+            botoes[8].style.backgroundColor = "red";
         }
 
         return (tabuleiro[0]);
     }
     if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') {
         if (real) {
-            botoes[2].style.color = "red";
-            botoes[4].style.color = "red";
-            botoes[6].style.color = "red";
+            botoes[2].style.backgroundColor = "red";
+            botoes[4].style.backgroundColor = "red";
+            botoes[6].style.backgroundColor = "red";
         }
 
         return (tabuleiro[2]);

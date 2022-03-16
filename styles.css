@@ -1,13 +1,24 @@
 .casa {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 50px;
     width: 50px;
     margin: 10px;
     display: inline-block;
     font-size: 30px;
     font-weight: bold;
+    border-width: 0px;
+    border-radius: 10%;
+    transition: 0.5s;
+}
+
+.casa:hover {
+    border-width: 0px;
+    border-radius: 50%;
+    transition: 0.10s;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
 }
+
