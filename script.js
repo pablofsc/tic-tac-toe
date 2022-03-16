@@ -18,11 +18,16 @@ window.onload = function () {
     atualizarPlacares();
 }
 
+function alterarCorBotao(botao, backgroundColor, color) {
+    botao.style.backgroundColor = backgroundColor;
+    botao.style.color = color;
+}
+
 function novaPartida() {
     console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
-        botoes[i].style.backgroundColor = "";
+        alterarCorBotao(botoes[i], '', '')
     }
 
     primeiroJogador = trocarJogador(primeiroJogador)
@@ -99,9 +104,9 @@ function checarVencedor(tabuleiro, real) {
     for (let i = 0; i <= 6; i += 3) {
         if (tabuleiro[i] == tabuleiro[i + 1] && tabuleiro[i] == tabuleiro[i + 2] && tabuleiro[i] !== ' ') {
             if (real === true) {
-                botoes[i].style.backgroundColor = "red";
-                botoes[i + 1].style.backgroundColor = "red";
-                botoes[i + 2].style.backgroundColor = "red";
+                alterarCorBotao(botoes[i], "gray", "white");
+                alterarCorBotao(botoes[i + 1], "gray", "white");
+                alterarCorBotao(botoes[i + 2], "gray", "white");
             }
 
             return (tabuleiro[i]);
@@ -111,9 +116,9 @@ function checarVencedor(tabuleiro, real) {
     for (let i = 0; i <= 3; i++) {
         if (tabuleiro[i] == tabuleiro[i + 3] && tabuleiro[i] == tabuleiro[i + 6] && tabuleiro[i] !== ' ') {
             if (real) {
-                botoes[i].style.backgroundColor = "red";
-                botoes[i + 3].style.backgroundColor = "red";
-                botoes[i + 6].style.backgroundColor = "red";
+                alterarCorBotao(botoes[i], "gray", "white");
+                alterarCorBotao(botoes[i + 3], "gray", "white");
+                alterarCorBotao(botoes[i + 6], "gray", "white");
             }
 
             return (tabuleiro[i]);
@@ -122,18 +127,18 @@ function checarVencedor(tabuleiro, real) {
 
     if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') {
         if (real) {
-            botoes[0].style.backgroundColor = "red";
-            botoes[4].style.backgroundColor = "red";
-            botoes[8].style.backgroundColor = "red";
+            alterarCorBotao(botoes[0], "gray", "white");
+            alterarCorBotao(botoes[4], "gray", "white");
+            alterarCorBotao(botoes[8], "gray", "white");
         }
 
         return (tabuleiro[0]);
     }
     if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') {
         if (real) {
-            botoes[2].style.backgroundColor = "red";
-            botoes[4].style.backgroundColor = "red";
-            botoes[6].style.backgroundColor = "red";
+            alterarCorBotao(botoes[2], "gray", "white");
+            alterarCorBotao(botoes[4], "gray", "white");
+            alterarCorBotao(botoes[6], "gray", "white");
         }
 
         return (tabuleiro[2]);
