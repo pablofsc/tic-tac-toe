@@ -14,7 +14,9 @@
 .casa:hover {
     border-width: 0px;
     border-radius: 50%;
-    transition: 0.10s;
+    transition: border-radius 0.1s, transform 0.5s 0.1s;
+    transform: scale(1.25);
+    cursor: pointer;
 }
 
 body {
