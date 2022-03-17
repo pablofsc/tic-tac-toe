@@ -14,7 +14,7 @@
 .casa:hover {
     border-width: 0px;
     border-radius: 50%;
-    transition: border-radius 0.1s, transform 0.5s 0.1s;
+    transition: border-radius 0.1s, transform 1s 0.25s;
     transform: scale(1.25);
     cursor: pointer;
 }
@@ -22,5 +22,17 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
+    transition: 0.5s;
 }
 
+#modoEscuro {
+    font-weight: bold;
+    height: 25px;
+    width: 125px;
+    border-width: 0px;
+    border-radius: 5px;
+}
+
+#modoEscuro:hover {
+    cursor: pointer;
+}

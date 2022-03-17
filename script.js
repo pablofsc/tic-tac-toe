@@ -8,14 +8,32 @@ var primeiroJogador = 'x';
 var partidasVencidasX = 0;
 var partidasVencidasO = 0;
 var empates = 0;
+var modoEscuroCheckbox = false;
 
 window.onload = function () {
+    //document.getElementById("modoEscuro").addEventListener("change", alternarModoEscuro());
+
     for (let i = 0; i <= 8; i++) {
         botoes.push(document.getElementById(i));
         botoes[i].addEventListener("click", () => checarValidez(i));
     }
 
     atualizarPlacares();
+}
+
+function alternarModoEscuro() {
+    modoEscuroCheckbox = !modoEscuroCheckbox;
+
+    if (modoEscuroCheckbox) {
+        document.getElementById("corpo").style.backgroundColor = "#1B1A17";
+        document.getElementById("corpo").style.color = "#F5F5F5";
+        document.getElementById("modoEscuro").value = "MODO CLARO";
+    }
+    else {
+        document.getElementById("corpo").style.backgroundColor = "";
+        document.getElementById("corpo").style.color = "";
+        document.getElementById("modoEscuro").value = "MODO ESCURO";
+    }
 }
 
 function alterarCorBotao(botao, backgroundColor, color) {
