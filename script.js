@@ -9,6 +9,7 @@ var partidasVencidasX = 0;
 var partidasVencidasO = 0;
 var empates = 0;
 var modoEscuroCheckbox = false;
+var travarBotoes = false;
 
 window.onload = function () {
     //document.getElementById("modoEscuro").addEventListener("change", alternarModoEscuro());
@@ -71,6 +72,7 @@ function novaPartida() {
     jogadorAtual = primeiroJogador;
 
     atualizarBotoes();
+    travarBotoes = false;
 
     if (primeiroJogador === 'o') {
         iaIniciar('o');
@@ -86,6 +88,10 @@ function atualizarPlacares() {
 }
 
 function checarValidez(casa) {
+    if (travarBotoes) {
+        return;
+    }
+
     /*console.log("Checando validez de " + casa);*/
     if (tabuleiroReal[casa] !== ' ') {
         console.log("Seleção inválida: " + casa + " por " + jogadorAtual);
@@ -113,6 +119,7 @@ function checarVencedorReal() {
     vencedor = checarVencedor(tabuleiroReal, true)
 
     if (vencedor !== ' ') {
+        travarBotoes = true;
         console.log("---------------- Anunciando vencedor: " + vencedor);
 
         switch (vencedor) {
