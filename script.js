@@ -25,14 +25,28 @@ function alternarModoEscuro() {
     modoEscuroCheckbox = !modoEscuroCheckbox;
 
     if (modoEscuroCheckbox) {
-        document.getElementById("corpo").style.backgroundColor = "#1B1A17";
+        document.getElementById("corpo").style.backgroundColor = "#323639";
         document.getElementById("corpo").style.color = "#F5F5F5";
         document.getElementById("modoEscuro").value = "MODO CLARO";
+
+        for (i = 0; i <= 8; i++) { // limpa o tabuleiro
+            alterarCorBotao(botoes[i], '#202124', '#FFFFFF');
+
+        }
+
+        alterarCorBotao(document.getElementById("modoEscuro"), '#202124', '#FFFFFF');
     }
     else {
         document.getElementById("corpo").style.backgroundColor = "";
         document.getElementById("corpo").style.color = "";
         document.getElementById("modoEscuro").value = "MODO ESCURO";
+
+        for (i = 0; i <= 8; i++) { // limpa o tabuleiro
+            alterarCorBotao(botoes[i], '', '')
+
+        }
+
+        alterarCorBotao(document.getElementById("modoEscuro"), '', '');
     }
 }
 
@@ -45,7 +59,12 @@ function novaPartida() {
     console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
-        alterarCorBotao(botoes[i], '', '')
+        if (modoEscuroCheckbox) {
+            alterarCorBotao(botoes[i], '#202124', '#FFFFFF');
+        }
+        else {
+            alterarCorBotao(botoes[i], '', '');
+        }
     }
 
     primeiroJogador = trocarJogador(primeiroJogador)
