@@ -92,9 +92,11 @@ function checarValidez(casa) {
         return;
     }
 
+    travarBotoes = true;
     /*console.log("Checando validez de " + casa);*/
     if (tabuleiroReal[casa] !== ' ') {
         console.log("Seleção inválida: " + casa + " por " + jogadorAtual);
+        travarBotoes = false;
         return;
     }
 
@@ -112,7 +114,12 @@ function registrarJogada(casa) {
     jogadorAtual = trocarJogador(jogadorAtual);
     console.log("Próximo jogador: " + jogadorAtual);
 
-    if (jogadorAtual === 'o' && checarVencedor(tabuleiroReal, false) == ' ') setTimeout(() => { iaIniciar('o'); }, 100);
+    if (jogadorAtual === 'o' && checarVencedor(tabuleiroReal, false) == ' ') setTimeout(() => {
+        iaIniciar('o');
+    }, 100);
+    else if (jogadorAtual === 'x' && checarVencedor(tabuleiroReal, false) == ' ') {
+        travarBotoes = false;
+    }
 }
 
 function checarVencedorReal() {
