@@ -74,6 +74,7 @@ function novaPartida() {
     console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
+        botoes[i].classList.remove('inativo');
         if (modoEscuroCheckbox) {
             alterarCorBotao(botoes[i], corCasaEscuro, corFonteEscuro);
         }
@@ -120,6 +121,9 @@ function checarValidez(casa) {
 function registrarJogada(casa) {
     console.log("Registrando: " + casa + " por " + jogadorAtual);
     tabuleiroReal[casa] = jogadorAtual;
+    setTimeout(() => {
+        botoes[casa].classList.add('inativo');
+    }, 150);
 
     atualizarBotoes();
 
@@ -130,7 +134,7 @@ function registrarJogada(casa) {
 
     if (jogadorAtual === 'o' && checarVencedor(tabuleiroReal, false) == ' ') setTimeout(() => {
         iaIniciar('o');
-    }, 100);
+    }, 500);
     else if (jogadorAtual === 'x' && checarVencedor(tabuleiroReal, false) == ' ') {
         travarBotoes = false;
     }
