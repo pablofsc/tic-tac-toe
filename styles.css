@@ -15,12 +15,11 @@ html {
     background-color: #BBBFCA;
 }
 
-.casa:hover {
+.casa:not(.inativo):hover {
     border-width: 0px;
     border-radius: 50%;
     transition: border-radius 0.1s, transform 1s 0.25s;
     transform: scale(1.25);
-    cursor: pointer;
 }
 
 body {
