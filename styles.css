@@ -15,11 +15,20 @@ html {
     background-color: #BBBFCA;
 }
 
-.casa:not(.inativo):hover {
-    border-width: 0px;
-    border-radius: 50%;
-    transition: border-radius 0.1s, transform 1s 0.25s;
-    transform: scale(1.25);
+@media(hover: hover) and (pointer: fine) {
+    .casa:not(.inativo):hover {
+        border-radius: 50%;
+        transition: border-radius 0.1s, transform 1s 0.25s;
+        transform: scale(1.25);
+    }
+}
+
+@media(hover: none){
+    .casa:not(.inativo):active {
+        border-radius: 50%;
+        transition: border-radius 0.1s, transform 0.5s;
+        transform: scale(0.75);
+    }
 }
 
 body {
