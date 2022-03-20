@@ -1,3 +1,11 @@
+const corBackgroundEscuro = '#1D3E53';
+const corFonteEscuro = '#F5F5F5';
+const corDivEscuro = '#254B62';
+const corCasaEscuro = '#476D7C';
+const corCasaDestaqueEscuro = '#77ABB7';
+
+const corCasaDestaqueClaro = '#495464';
+
 var tabuleiroReal = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '];
 
 var botoes = [];
@@ -26,25 +34,31 @@ function alternarModoEscuro() {
     modoEscuroCheckbox = !modoEscuroCheckbox;
 
     if (modoEscuroCheckbox) {
-        document.getElementById("corpo").style.backgroundColor = "#323639";
-        document.getElementById("corpo").style.color = "#F5F5F5";
+        document.getElementById("corpo").style.backgroundColor = corBackgroundEscuro;
+        document.getElementById("corpo").style.color = corFonteEscuro;
         document.getElementById("modoEscuro").value = "MODO CLARO";
 
-        for (i = 0; i <= 8; i++) { // limpa o tabuleiro
-            alterarCorBotao(botoes[i], '#202124', '#FFFFFF');
-
+        for (i = 0; i < document.getElementsByClassName("div").length; i++) {
+            document.getElementsByClassName("div")[i].style.backgroundColor = corDivEscuro;
         }
 
-        alterarCorBotao(document.getElementById("modoEscuro"), '#202124', '#FFFFFF');
+        for (i = 0; i <= 8; i++) {
+            alterarCorBotao(botoes[i], corCasaEscuro, corFonteEscuro);
+        }
+
+        alterarCorBotao(document.getElementById("modoEscuro"), corCasaEscuro, corFonteEscuro);
     }
     else {
         document.getElementById("corpo").style.backgroundColor = "";
         document.getElementById("corpo").style.color = "";
         document.getElementById("modoEscuro").value = "MODO ESCURO";
 
-        for (i = 0; i <= 8; i++) { // limpa o tabuleiro
-            alterarCorBotao(botoes[i], '', '')
+        for (i = 0; i < document.getElementsByClassName("div").length; i++) {
+            document.getElementsByClassName("div")[i].style.backgroundColor = '';
+        }
 
+        for (i = 0; i <= 8; i++) {
+            alterarCorBotao(botoes[i], '', '')
         }
 
         alterarCorBotao(document.getElementById("modoEscuro"), '', '');
@@ -61,7 +75,7 @@ function novaPartida() {
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
         tabuleiroReal[i] = ' ';
         if (modoEscuroCheckbox) {
-            alterarCorBotao(botoes[i], '#202124', '#FFFFFF');
+            alterarCorBotao(botoes[i], corCasaEscuro, corFonteEscuro);
         }
         else {
             alterarCorBotao(botoes[i], '', '');
@@ -150,14 +164,25 @@ function checarVencedorReal() {
     }
 }
 
+function indicarVitoria(a, b, c) {
+    if (modoEscuroCheckbox) {
+        alterarCorBotao(a, corCasaDestaqueEscuro, "black");
+        alterarCorBotao(b, corCasaDestaqueEscuro, "black");
+        alterarCorBotao(c, corCasaDestaqueEscuro, "black");
+    }
+    else {
+        alterarCorBotao(a, corCasaDestaqueClaro, "white");
+        alterarCorBotao(b, corCasaDestaqueClaro, "white");
+        alterarCorBotao(c, corCasaDestaqueClaro, "white");
+    }
+}
+
 function checarVencedor(tabuleiro, real) {
     /*console.log("Checando se há vencedor");*/
     for (let i = 0; i <= 6; i += 3) {
         if (tabuleiro[i] == tabuleiro[i + 1] && tabuleiro[i] == tabuleiro[i + 2] && tabuleiro[i] !== ' ') {
             if (real === true) {
-                alterarCorBotao(botoes[i], "gray", "white");
-                alterarCorBotao(botoes[i + 1], "gray", "white");
-                alterarCorBotao(botoes[i + 2], "gray", "white");
+                indicarVitoria(botoes[i], botoes[i + 1], botoes[i + 2]);
             }
 
             return (tabuleiro[i]);
@@ -167,9 +192,7 @@ function checarVencedor(tabuleiro, real) {
     for (let i = 0; i <= 3; i++) {
         if (tabuleiro[i] == tabuleiro[i + 3] && tabuleiro[i] == tabuleiro[i + 6] && tabuleiro[i] !== ' ') {
             if (real) {
-                alterarCorBotao(botoes[i], "gray", "white");
-                alterarCorBotao(botoes[i + 3], "gray", "white");
-                alterarCorBotao(botoes[i + 6], "gray", "white");
+                indicarVitoria(botoes[i], botoes[i + 3], botoes[i + 6]);
             }
 
             return (tabuleiro[i]);
@@ -178,18 +201,14 @@ function checarVencedor(tabuleiro, real) {
 
     if (tabuleiro[0] == tabuleiro[4] && tabuleiro[0] == tabuleiro[8] && tabuleiro[0] !== ' ') {
         if (real) {
-            alterarCorBotao(botoes[0], "gray", "white");
-            alterarCorBotao(botoes[4], "gray", "white");
-            alterarCorBotao(botoes[8], "gray", "white");
+            indicarVitoria(botoes[0], botoes[4], botoes[8]);
         }
 
         return (tabuleiro[0]);
     }
     if (tabuleiro[2] == tabuleiro[4] && tabuleiro[2] == tabuleiro[6] && tabuleiro[2] !== ' ') {
         if (real) {
-            alterarCorBotao(botoes[2], "gray", "white");
-            alterarCorBotao(botoes[4], "gray", "white");
-            alterarCorBotao(botoes[6], "gray", "white");
+            indicarVitoria(botoes[2], botoes[4], botoes[6]);
         }
 
         return (tabuleiro[2]);

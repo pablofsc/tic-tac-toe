@@ -1,3 +1,7 @@
+html {
+    background-color: #F4F4F2;
+}
+
 .casa {
     height: 50px;
     width: 50px;
@@ -8,6 +12,7 @@
     border-width: 0px;
     border-radius: 10%;
     transition: 0.5s;
+    background-color: #BBBFCA;
 }
 
 .casa:hover {
@@ -22,8 +27,16 @@ body {
     font-family: 'Fredoka', sans-serif;
     text-align: center;
     transition: 0.5s;
+    margin: 0;
+    height: 100vh;
 
-    animation: fadeInAnimation ease 1.5s
+    animation: fadeInAnimation ease 1.5s;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes fadeInAnimation {
@@ -42,8 +55,27 @@ body {
     border-width: 0px;
     border-radius: 5px;
     transition: 0.5s;
+    background-color: #BBBFCA;
 }
 
 #modoEscuro:hover {
     cursor: pointer;
+}
+
+div {
+    width: 250px;
+    border-radius: 25px;
+    margin: 20px;
+    background-color: #E8E8E8;
+    padding: 20px;
+
+    transition: background-color 0.5s;
+}
+
+h1 {
+    line-height: 0;
+}
+
+#jogo {
+    padding: 40px 20px;
 }
