@@ -17,7 +17,7 @@ var partidasVencidasX = 0;
 var partidasVencidasO = 0;
 var empates = 0;
 var modoEscuroCheckbox = false;
-var travarBotoes = false;
+var botoesTravados = false;
 
 window.onload = function () {
     //document.getElementById("modoEscuro").addEventListener("change", alternarModoEscuro());
@@ -70,6 +70,25 @@ function alterarCorBotao(botao, backgroundColor, color) {
     botao.style.color = color;
 }
 
+function travarBotoes(travar) {
+    if (travar === true) {
+        botoesTravados = true;
+        setTimeout(() => {
+            for (i = 0; i <= 8; i++) {
+                botoes[i].classList.add("inativo");
+            }
+        }, 10)
+    }
+    else {
+        botoesTravados = false;
+        setTimeout(() => {
+            for (i = 0; i <= 8; i++) {
+                botoes[i].classList.remove("inativo");
+            }
+        }, 10)
+    }
+}
+
 function novaPartida() {
     console.log("Iniciando nova partida...");
     for (i = 0; i <= 8; i++) { // limpa o tabuleiro
@@ -87,7 +106,7 @@ function novaPartida() {
     jogadorAtual = primeiroJogador;
 
     atualizarBotoes();
-    travarBotoes = false;
+    travarBotoes(false);
 
     if (primeiroJogador === 'o') {
         iaIniciar('o');
@@ -103,15 +122,15 @@ function atualizarPlacares() {
 }
 
 function checarValidez(casa) {
-    if (travarBotoes) {
+    if (botoesTravados === true) {
         return;
     }
 
-    travarBotoes = true;
+    travarBotoes(true);
     /*console.log("Checando validez de " + casa);*/
     if (tabuleiroReal[casa] !== ' ') {
         console.log("Seleção inválida: " + casa + " por " + jogadorAtual);
-        travarBotoes = false;
+        travarBotoes(false);
         return;
     }
 
@@ -136,7 +155,7 @@ function registrarJogada(casa) {
         iaIniciar('o');
     }, 500);
     else if (jogadorAtual === 'x' && checarVencedor(tabuleiroReal, false) == ' ') {
-        travarBotoes = false;
+        travarBotoes(false);
     }
 }
 
@@ -144,7 +163,7 @@ function checarVencedorReal() {
     vencedor = checarVencedor(tabuleiroReal, true)
 
     if (vencedor !== ' ') {
-        travarBotoes = true;
+        travarBotoes(true);
         console.log("---------------- Anunciando vencedor: " + vencedor);
 
         switch (vencedor) {

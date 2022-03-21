@@ -18,8 +18,8 @@ html {
 @media(hover: hover) and (pointer: fine) {
     .casa:not(.inativo):hover {
         border-radius: 50%;
-        transition: border-radius 0.1s, transform 1s 0.25s;
-        transform: scale(1.25);
+        transition: border-radius 0.1s, transform 2s 0.5s;
+        transform: scale(1.5);
     }
 }
 
