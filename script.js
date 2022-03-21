@@ -83,7 +83,9 @@ function travarBotoes(travar) {
         botoesTravados = false;
         setTimeout(() => {
             for (i = 0; i <= 8; i++) {
-                botoes[i].classList.remove("inativo");
+                if (tabuleiroReal[i] === ' ') {
+                    botoes[i].classList.remove("inativo");
+                }
             }
         }, 10)
     }
