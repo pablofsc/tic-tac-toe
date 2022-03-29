@@ -20,8 +20,6 @@ var modoEscuroCheckbox = false;
 var botoesTravados = false;
 
 window.onload = function () {
-    //document.getElementById("modoEscuro").addEventListener("change", alternarModoEscuro());
-
     for (let i = 0; i <= 8; i++) {
         botoes.push(document.getElementById(i));
         botoes[i].addEventListener("click", () => checarValidez(i));
@@ -36,32 +34,34 @@ function alternarModoEscuro() {
     if (modoEscuroCheckbox) {
         document.getElementById("corpo").style.backgroundColor = corBackgroundEscuro;
         document.getElementById("corpo").style.color = corFonteEscuro;
-        document.getElementById("modoEscuro").value = "MODO CLARO";
 
-        for (i = 0; i < document.getElementsByClassName("div").length; i++) {
-            document.getElementsByClassName("div")[i].style.backgroundColor = corDivEscuro;
+        for (i = 0; i < document.getElementsByClassName("icone").length; i++) {
+            document.getElementsByClassName("icone")[i].style.fill = corFonteEscuro;
+        }
+
+        for (i = 0; i < document.getElementsByClassName("regiao").length; i++) {
+            document.getElementsByClassName("regiao")[i].style.backgroundColor = corDivEscuro;
         }
 
         for (i = 0; i <= 8; i++) {
             alterarCorBotao(botoes[i], corCasaEscuro, corFonteEscuro);
         }
-
-        alterarCorBotao(document.getElementById("modoEscuro"), corCasaEscuro, corFonteEscuro);
     }
     else {
         document.getElementById("corpo").style.backgroundColor = "";
         document.getElementById("corpo").style.color = "";
-        document.getElementById("modoEscuro").value = "MODO ESCURO";
 
-        for (i = 0; i < document.getElementsByClassName("div").length; i++) {
-            document.getElementsByClassName("div")[i].style.backgroundColor = '';
+        for (i = 0; i < document.getElementsByClassName("icone").length; i++) {
+            document.getElementsByClassName("icone")[i].style.fill = "";
+        }
+
+        for (i = 0; i < document.getElementsByClassName("regiao").length; i++) {
+            document.getElementsByClassName("regiao")[i].style.backgroundColor = '';
         }
 
         for (i = 0; i <= 8; i++) {
             alterarCorBotao(botoes[i], '', '')
         }
-
-        alterarCorBotao(document.getElementById("modoEscuro"), '', '');
     }
 }
 
@@ -117,9 +117,7 @@ function novaPartida() {
 
 function atualizarPlacares() {
     document.getElementById("partidasVencidasJogador").innerHTML = partidasVencidasX;
-    document.getElementById("partidasVencidasJogadorH1").innerHTML = partidasVencidasX;
     document.getElementById("partidasVencidasMaquina").innerHTML = partidasVencidasO;
-    document.getElementById("partidasVencidasMaquinaH1").innerHTML = partidasVencidasO;
     document.getElementById("partidasEmpatadas").innerHTML = empates;
 }
 
@@ -250,7 +248,18 @@ function checarVencedor(tabuleiro, real) {
 
 function atualizarBotoes() {
     for (let i = 0; i <= 8; i++) {
-        botoes[i].value = tabuleiroReal[i];
+        switch (tabuleiroReal[i]) {
+            case 'x':
+                botoes[i].innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/><path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/></svg>'
+                break;
+
+            case 'o':
+                botoes[i].innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/></svg>'
+                break;
+
+            default:
+                botoes[i].innerHTML = ""
+        }
         /*console.log(document.getElementById(i));*/
     }
 }

@@ -2,17 +2,64 @@ html {
     background-color: #F4F4F2;
 }
 
+body {
+    font-family: 'Courier Prime', monospace;
+    text-align: center;
+    transition: 0.5s;
+    margin: 0;
+    height: 100vh;
+
+    animation: fadeInAnimation ease 1.5s;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.regiao {
+    width: 250px;
+    border-radius: 25px;
+    margin: 20px;
+    background-color: #E8E8E8;
+    padding: 20px;
+
+    transition: background-color 0.5s;
+}
+
+.pontuacao {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 30px;
+}
+
+.icone {
+    transition: 0.5s;
+}
+
+#jogo {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .casa {
     height: 50px;
     width: 50px;
     margin: 10px;
     display: inline-block;
     font-size: 30px;
-    font-weight: bold;
     border-width: 0px;
     border-radius: 10%;
     transition: 0.5s;
     background-color: #BBBFCA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -31,22 +78,6 @@ html {
     }
 }
 
-body {
-    font-family: 'Fredoka', sans-serif;
-    text-align: center;
-    transition: 0.5s;
-    margin: 0;
-    height: 100vh;
-
-    animation: fadeInAnimation ease 1.5s;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-}
-
 @keyframes fadeInAnimation {
     0% {
         opacity: 0;
@@ -56,34 +87,60 @@ body {
      }
 }
 
-#modoEscuro {
-    font-family: 'Fredoka', sans-serif;
-    height: 25px;
-    width: 125px;
-    border-width: 0px;
-    border-radius: 5px;
-    transition: 0.5s;
-    background-color: #BBBFCA;
+#seletorModoEscuro {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-#modoEscuro:hover {
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+  /* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+/* The slider */
+.slider.round {
+    position: absolute;
     cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #BBBFCA;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #F4F4F2;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+}
+  
+input:checked + .slider {
+    background-color: #476D7C;
 }
 
-div {
-    width: 250px;
-    border-radius: 25px;
-    margin: 20px;
-    background-color: #E8E8E8;
-    padding: 20px;
-
-    transition: background-color 0.5s;
-}
-
-h1 {
-    line-height: 0;
-}
-
-#jogo {
-    padding: 40px 20px;
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
