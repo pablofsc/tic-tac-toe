@@ -1,7 +1,7 @@
-# ttt-w
-Online em https://pablofsc.github.io/ttt-w/
+# Tic-Tac-Toe
+Online em https://pablofsc.github.io/tic-tac-toe
 
-Jogo da velha para navegador com inteligência artificial simples.
+Jogo da Velha para navegador, com uma IA simples que joga contra o usuário.
 
-SVGs do Bootstrap Icons.
-Botão switch adaptado da w3schools.
+Os ícones usados são do Bootstrap Icons.
+O botão de modo escuro foi adaptado da w3schools.
